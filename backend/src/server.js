@@ -6,6 +6,7 @@ import cors from 'cors';
 const app = express();
 const __dirname = path.resolve();
 import {serve} from "inngest/express";
+import { inngest } from './lib/inngest.js';
 //middlewares
 app.use(express.json());
 //credentials:true to enable cookies in cors
