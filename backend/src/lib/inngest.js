@@ -1,6 +1,6 @@
 import {Inngest} from "inngest";
 import { ENV } from "./env.js";
-import {User} from "../models/Users.js";
+import User from "../models/Users.js";
 import { connectDB } from "./db.js";
 export const inngest = new Inngest({name:"Intervu-ai"});
 const syncUser=inngest.createFunction(
