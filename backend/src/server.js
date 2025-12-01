@@ -7,23 +7,23 @@ const app = express();
 const __dirname = path.resolve();
 import {serve} from "inngest/express";
 import { inngest ,functions} from './lib/inngest.js';
+
+import {clerkMiddleware} from "@clerk/express";
+import { protectRoute } from './middleware/protectRoute.js';
+import chatRoutes from './routes/chatRoutes.js';
+
 //middlewares
 app.use(express.json());
 //credentials:true to enable cookies in cors
 app.use(cors({origin:ENV.CLIENT_URL,Credentials:true}));
-
+app.use(clerkMiddleware())// this adds  auth field to reques object:req.auth()
 
 app.use("/api/inngest",serve({client:inngest,functions,signingKey:ENV.INNGEST_SIGNING_KEY}));
-
+app.use('/api/chat',chatRoutes)
 
 app.get('/health', (req, res) => {
     res.status(200).json({
         message: 'api is up and running'
-    });
-});
-app.get('/books', (req, res) => {
-    res.status(200).json({
-        message: 'books route'
     });
 });
 
