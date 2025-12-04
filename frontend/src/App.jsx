@@ -1,23 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import { SignedIn, SignedOut, SignIn, SignInButton, SignOutButton, UserButton } from '@clerk/clerk-react'
+
+import { SignedIn, SignedOut, SignIn, SignInButton, SignOutButton, UserButton, useUser } from '@clerk/clerk-react'
+import { Navigate, Route, Routes } from 'react-router'
+import HomePage from './pages/HomePage.jsx'
+import ProblemsPage from './pages/ProblemsPage.jsx'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
-
+ const {isSignedIn} = useUser()
+ console.log("isSignedIn:", isSignedIn);
   return (
     <>
-      <h1>Intervu.ai</h1>
-      <SignedOut>
-        <SignInButton mode="modal" >
-          <button>Sign Up Please</button>
-        </SignInButton>
-      </SignedOut>
+      <h1 className='text-red-300'>Intervu.ai</h1>
 
-        <SignedIn>
-        <SignOutButton />
-      </SignedIn>
-    <UserButton/>
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/problems' element={isSignedIn===true?<ProblemsPage />:<Navigate to={"/"}/>} />
+
+      </Routes>
+    <Toaster toastOptions={{duration:3000}}/>
 
     </>
   )
