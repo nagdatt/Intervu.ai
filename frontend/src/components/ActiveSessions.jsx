@@ -12,7 +12,7 @@ import { getDifficultyBadgeClass } from "../lib/utils";
 
 function ActiveSessions({ sessions, isLoading, isUserInSession }) {
   return (
-    <div className="lg:col-span-2 card bg-base-100 border-2 border-primary/20 hover:border-primary/30 h-full">
+    <div className="lg:col-span-2 card bg-base-100  h-full">
       <div className="card-body">
         {/* HEADERS SECTION */}
         <div className="flex items-center justify-between mb-6">

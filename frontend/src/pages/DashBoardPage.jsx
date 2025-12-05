@@ -49,9 +49,12 @@ function DashboardPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-base-300">
+      <div className="min-h-screen bg-base-200">
         <Navbar />
+        <div className="container  mx-auto px-6 pb-8"> 
         <WelcomeSection onCreateSession={() => setShowCreateModal(true)} />
+          
+        </div>
 
         {/* Grid layout */}
         <div className="container mx-auto px-6 pb-16">
